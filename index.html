@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApeRectum | The Bottom of the Crypto Space</title>
+    <meta name="description" content="ApeRectum ($AR) is the ape rectum of the anal cryptospace. A monument to our collective financial pain.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---
+        STYLE FOUNDATION & RESET
+        --- */
+        :root {
+            --orange: #FF6700;
+            --black: #0D0D0D;
+            --off-white: #F5F5F5;
+            --dark-gray: #1A1A1A;
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--off-white);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: var(--orange);
+            color: var(--black);
+        }
+
+        /* ---
+        TYPOGRAPHY & HEADINGS
+        --- */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: var(--off-white);
+            letter-spacing: 1.5px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 15vw, 7rem);
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 10vw, 4.5rem);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: var(--orange);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            max-width: 65ch;
+        }
+
+        a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--off-white);
+        }
+
+        /* ---
+        LAYOUT & CONTAINERS
+        --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 0;
+        }
+
+        section {
+            border-bottom: 2px solid var(--dark-gray);
+            overflow: hidden;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---
+        HEADER & NAVIGATION
+        --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--dark-gray);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header-logo-text {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--off-white);
+            text-transform: uppercase;
+        }
+
+        /* ---
+        BUTTONS & INTERACTIVE ELEMENTS
+        --- */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--orange);
+            background-color: var(--orange);
+            color: var(--black);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--orange);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--off-white);
+            border-color: var(--off-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--off-white);
+            color: var(--black);
+        }
+
+        /* ---
+        HERO SECTION
+        --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px; /* Header height */
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .hero-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--off-white);
+            max-width: 50ch;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contract-address {
+            background-color: var(--dark-gray);
+            padding: 1rem;
+            margin-top: 2rem;
+            border: 1px solid #333;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contract-address span {
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            padding: 0.5rem 1rem;
+            background: var(--orange);
+            color: var(--black);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: bold;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #ff8c42;
+        }
+
+        /* ---
+        ABOUT SECTION
+        --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-text {
+            max-width: 60ch;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image .glitch-img {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            filter: grayscale(50%);
+        }
+
+        .glitch-img:before, .glitch-img:after {
+            content: '';
+            background-image: url('https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/84c03494-45d4-4ab0-ab33-3957d071367a.png?');
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.8;
+        }
+
+        .glitch-img:hover:before {
+            animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            left: -2px;
+        }
+
+        .glitch-img:hover:after {
+            animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+            left: 2px;
+        }
+
+        @keyframes glitch-effect {
+            0% { clip-path: polygon(0 2%, 100% 2%, 100% 98%, 0 98%); }
+            25% { clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%); }
+            50% { clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%); }
+            75% { clip-path: polygon(0 0, 100% 0, 100% 15%, 0 15%); }
+            100% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+        }
+
+        /* ---
+        TOKENOMICS SECTION
+        --- */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tokenomics-card {
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tokenomics-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .tokenomics-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .tokenomics-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--off-white);
+        }
+
+        .tokenomics-card .subtext {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-weight: normal;
+        }
+
+        /* ---
+        HOW TO BUY SECTION
+        --- */
+        .how-to-buy-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--orange);
+            line-height: 1;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .step-content h3 {
+            color: var(--off-white);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ---
+        ROADMAP SECTION
+        --- */
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .roadmap-timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--dark-gray);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .roadmap-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .roadmap-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--black);
+            border: 4px solid var(--orange);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .roadmap-item.left {
+            left: 0;
+        }
+
+        .roadmap-item.right {
+            left: 50%;
+        }
+
+        .roadmap-item.right::after {
+            left: -10px;
+        }
+
+        .roadmap-content {
+            padding: 20px 30px;
+            background-color: var(--dark-gray);
+            position: relative;
+        }
+        
+        .roadmap-content h3 {
+            color: var(--orange);
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-timeline::after {
+                left: 20px;
+            }
+            .roadmap-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+            .roadmap-item.left, .roadmap-item.right {
+                left: 0;
+            }
+            .roadmap-item::after {
+                left: 10px;
+            }
+        }
+
+        /* ---
+        COMMUNITY SECTION
+        --- */
+        .community {
+            text-align: center;
+        }
+
+        .community h2 {
+            margin-bottom: 1rem;
+        }
+
+        .community p {
+            margin: 0 auto 2rem;
+        }
+
+        /* ---
+        FOOTER
+        --- */
+        .footer {
+            background-color: var(--dark-gray);
+            text-align: center;
+            padding: 3rem 5%;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .footer p {
+            max-width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer .disclaimer {
+            font-style: italic;
+            color: #777;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="header-logo">
+            <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/84c03494-45d4-4ab0-ab33-3957d071367a.png?" alt="ApeRectum Logo">
+            <span class="header-logo-text">ApeRectum</span>
+        </a>
+        <a href="#how-to-buy" class="btn">Buy $AR</a>
+    </header>
+
+    <main>
+        <!-- INTRO SECTION -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-logo-container">
+                        <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/84c03494-45d4-4ab0-ab33-3957d071367a.png?" alt="ApeRectum Bear Logo" class="hero-logo">
+                    </div>
+                    <h1>ApeRectum</h1>
+                    <p class="hero-subtitle">Welcome to the absolute bottom. The final stop. The very end of the anal cryptospace. We've all been here. Now, we've built a monument.</p>
+                    <div class="hero-buttons">
+                        <a href="#how-to-buy" class="btn">Embrace the Pain</a>
+                        <a href="#about" class="btn btn-secondary">Learn Our Philosophy</a>
+                    </div>
+                    <div class="contract-address">
+                        <span>CHiNsA2B6ZbmKnEmHPCbbX9aXJyoJzAtcLpHEDd6Qyq3</span>
+                        <button class="copy-btn" id="copyButton">Copy Address</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="container fade-in">
+                <h2>Forged in Red Candles</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>This isn't a coin about gains. It's a testament to survival. It's the shared grimace in the mirror after a -90% day. It's the gallows humor that gets us through another brutal bear market.</p>
+                        <p>ApeRectum ($AR) symbolizes that raw, unfiltered feeling of hitting rock bottom. It's a digital badge of honor for every investor who held through the pain, for every "ape" who got financially violated by a bear.</p>
+                        <p>We find strength not in charts, but in our collective resilience. This is a community built on the ashes of our portfolios.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="glitch-img">
+                            <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/84c03494-45d4-4ab0-ab33-3957d071367a.png?" alt="Glitching Bear Logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOKENOMICS SECTION -->
+        <section id="tokenomics">
+            <div class="container fade-in">
+                <h2>The Brutal Truth</h2>
+                <div class="tokenomics-grid">
+                    <div class="tokenomics-card">
+                        <h3>Total Supply</h3>
+                        <p>1,000,000,000</p>
+                        <span class="subtext">Because a billion units of pain feels about right.</span>
+                    </div>
+                    <div class="tokenomics-card">
+                        <h3>Taxes</h3>
+                        <p>0% Buy / 0% Sell</p>
+                        <span class="subtext">The market has already taxed our souls. We're not adding to it.</span>
+                    </div>
+                    <div class="tokenomics-card">
+                        <h3>Liquidity</h3>
+                        <p>Burned</p>
+                        <span class="subtext">Like our hopes and dreams. It's gone forever. No rug to pull.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW TO BUY SECTION -->
+        <section id="how-to-buy">
+            <div class="container fade-in">
+                <h2>Your Guide to Rock Bottom</h2>
+                <div class="how-to-buy-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Get a Wallet</h3>
+                            <p>Download Phantom, Solflare, or any other wallet that supports the Solana network. Guard your seed phrase like it's the last dollar in your account.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Get Some SOL</h3>
+                            <p>You'll need some SOL in your wallet to trade. Buy it on a centralized exchange and send it to your wallet address. Try not to lose it on the way.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Go to a DEX</h3>
+                            <p>Use a decentralized exchange like Raydium or Jupiter. Connect your wallet. Brace yourself for the user interface.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Swap for $AR</h3>
+                            <p>Paste our contract address, select how much SOL you're willing to sacrifice, and confirm the swap. Welcome to the club.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROADMAP SECTION -->
+        <section id="roadmap">
+            <div class="container fade-in">
+                <h2 style="text-align: center;">The Path Forward (Probably Sideways)</h2>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-item left">
+                        <div class="roadmap-content">
+                            <h3>Phase 1: Acknowledge the Pain</h3>
+                            <p>Launch the token. Build a community of cynical, battle-hardened survivors. Share war stories.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item right">
+                        <div class="roadmap-content">
+                            <h3>Phase 2: Meme the Suffering</h3>
+                            <p>Unleash a torrent of memes that perfectly capture the agony of a bear market. Laughter is the best (and only) medicine we can afford.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item left">
+                        <div class="roadmap-content">
+                            <h3>Phase 3: Existential Dread</h3>
+                            <p>Question our life choices. Stare into the abyss. The abyss stares back and asks for our seed phrase.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item right">
+                        <div class="roadmap-content">
+                            <h3>Phase 4: Still Here</h3>
+                            <p>Survive. Persist. Continue to be the rectum of the cryptospace. Maybe find a glimmer of hope. Or maybe just more memes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY SECTION -->
+        <section id="community">
+            <div class="container fade-in">
+                <h2>We Are Everywhere</h2>
+                <p>There are no official social links to shill. We are not influencers.</p>
+                <p>We are the anonymous voices in the forums, the gallows humor in the chat groups, the silent nod between strangers who've both seen their portfolios decimated. If you know, you know. You'll find us in the trenches.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <img src="https://yoahusjzxyasdporfmmt.supabase.co/storage/v1/object/public/token-logos/84c03494-45d4-4ab0-ab33-3957d071367a.png?" alt="ApeRectum Logo" class="footer-logo">
+        <p>ApeRectum ($AR)</p>
+        <p>&copy; 2024 ApeRectum. All rights reserved, somehow.</p>
+        <p class="disclaimer">This is a meme coin with no intrinsic value or expectation of financial return. It is a joke. A very, very dark joke. Invest responsibly, or don't. We're not your dad.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Copy to Clipboard Functionality ---
+            const copyButton = document.getElementById('copyButton');
+            const contractAddress = 'CHiNsA2B6ZbmKnEmHPCbbX9aXJyoJzAtcLpHEDd6Qyq3';
+
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(contractAddress).then(() => {
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy Address';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+
+            // --- Scroll Fade-in Animation ---
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            // --- Smooth scroll for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
